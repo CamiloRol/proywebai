@@ -1,7 +1,100 @@
 @import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+
+@layer base {
+  .notfound {
+        --background: 220 25% 10%;
+        --foreground: 210 100% 95%;
+
+        --card: 220 20% 15%;
+        --card-foreground: 210 100% 95%;
+
+        --popover: 220 20% 15%;
+        --popover-foreground: 210 100% 95%;
+
+        --primary: 190 100% 50%;
+        --primary-foreground: 220 25% 10%;
+
+        --secondary: 270 100% 65%;
+        --secondary-foreground: 210 100% 95%;
+
+        --muted: 220 15% 20%;
+        --muted-foreground: 210 20% 70%;
+
+        --accent: 280 90% 60%;
+        --accent-foreground: 210 100% 95%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 220 20% 25%;
+        --input: 220 20% 25%;
+        --ring: 190 100% 50%;
+
+        --radius: 0.75rem;
+    
+        --gradient-ai: linear-gradient(135deg, hsl(190 100% 50%), hsl(270 100% 65%));
+        --gradient-glow: linear-gradient(180deg, hsl(190 100% 50% / 0.1), hsl(270 100% 65% / 0.1));
+        --shadow-neon: 0 0 30px hsl(190 100% 50% / 0.3);
+        --shadow-purple: 0 0 30px hsl(270 100% 65% / 0.3);
+
+        --sidebar-background: 0 0% 98%;
+
+        --sidebar-foreground: 240 5.3% 26.1%;
+
+        --sidebar-primary: 240 5.9% 10%;
+
+        --sidebar-primary-foreground: 0 0% 98%;
+
+        --sidebar-accent: 240 4.8% 95.9%;
+
+        --sidebar-accent-foreground: 240 5.9% 10%;
+
+        --sidebar-border: 220 13% 91%;
+
+        --sidebar-ring: 217.2 91.2% 59.8%;
+}
+
+.dark {
+        --background: 220 25% 10%;
+        --foreground: 210 100% 95%;
+
+        --card: 220 20% 15%;
+        --card-foreground: 210 100% 95%;
+
+        --popover: 220 20% 15%;
+        --popover-foreground: 210 100% 95%;
+
+        --primary: 190 100% 50%;
+        --primary-foreground: 220 25% 10%;
+
+        --secondary: 270 100% 65%;
+        --secondary-foreground: 210 100% 95%;
+
+        --muted: 220 15% 20%;
+        --muted-foreground: 210 20% 70%;
+
+        --accent: 280 90% 60%;
+        --accent-foreground: 210 100% 95%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 220 20% 25%;
+        --input: 220 20% 25%;
+        --ring: 190 100% 50%;
+        --sidebar-background: 220 25% 10%;
+        --sidebar-foreground: 210 100% 95%;
+        --sidebar-primary: 190 100% 50%;
+        --sidebar-primary-foreground: 220 25% 10%;
+        --sidebar-accent: 220 20% 15%;
+        --sidebar-accent-foreground: 210 100% 95%;
+        --sidebar-border: 220 20% 25%;
+        --sidebar-ring: 190 100% 50%;
+}
+}
+
 .body-login {
         font-family: 'Inter', sans-serif;
         background-color: #f8fafc;
@@ -20,6 +113,10 @@ body {
         
 .gradient-bg {
         background: linear-gradient(135deg, #317c0c 0%, #1a61ab 100%);
+        }
+
+.gradient-bg-homenologin {
+            background: linear-gradient(135deg, #317c0c 0%, #87d461 100%);
         }
         
 .chat-bubble {
@@ -58,7 +155,14 @@ body {
 .typing-indicator span:nth-child(3) {
         animation-delay: 0.4s;
         }
-        
+
+.hover-scale {
+            transition: transform 0.3s ease;
+        }
+
+.hover-scale:hover {
+            transform: translateY(-2px);
+        }
 @keyframes bounce {
             0%, 60%, 100% { transform: translateY(0); }
             30% { transform: translateY(-5px); }

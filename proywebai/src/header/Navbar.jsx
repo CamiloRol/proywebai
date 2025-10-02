@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { Menu, Zap } from "react-feather";
 
 export default function Navbar() {
     const { isAuthenticated, logout } = useAuth();
@@ -9,7 +10,7 @@ export default function Navbar() {
             <div className="container mx-auto px-4 py-6">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center space-x-3">
-                        <i data-feather="zap" className="w-8 h-8"></i>
+                        <Zap className="w-8 h-8 text-yellow-400" />
                         <h1 className="text-2xl font-bold">InfoFlow AI</h1>
                     </div>
                     <div className="hidden md:flex space-x-6">
@@ -33,7 +34,7 @@ export default function Navbar() {
                     </div>
 
                     <button className="md:hidden">
-                        <i data-feather="menu" className="w-6 h-6"></i>
+                        <Menu />
                     </button>
                 </div>
             </div>

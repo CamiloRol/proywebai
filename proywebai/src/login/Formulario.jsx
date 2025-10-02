@@ -15,7 +15,7 @@ export default function Formulario() {
         const data = await login(email, password_hash);
         setMessage("✅ Login correcto.");
         localStorage.setItem("token", data.access_token);
-        navigate("/home");
+        navigate("/");
         } catch (err) {
         setMessage("❌ " + err.message);
         }

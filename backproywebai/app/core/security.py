@@ -25,3 +25,9 @@ def create_access_token(user_id: str):
         "exp": datetime.utcnow() + timedelta(hours=2)
     }
     return jwt.encode(payload, JWT_SECRET, algorithm="HS256")
+
+def hash_password(password: str) -> str:
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+def verify_password(password: str, hashed: str) -> bool:
+    return bcrypt.checkpw(password.encode("utf-8"), hashed.encode("utf-8"))
