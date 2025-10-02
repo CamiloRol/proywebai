@@ -7,10 +7,16 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 
 @router.post("/login", response_model=LoginResponse)
 def login(request: LoginRequest):
-    user = authenticate_user(request.email, request.password)
+    user = authenticate_user(request.email, request.password_hash)
     
     if not user:
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
     
     token = create_access_token(user["id"])
     return {"access_token": token, "token_type": "bearer"}
+
+@router.post("/login")
+async def login(request: LoginRequest):
+    print("Email recibido:", request.email)
+    print("Password recibido:", request.password_hash)
+    return {"status": "ok"}

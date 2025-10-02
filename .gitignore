@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.env # Environment variables file  # Add this line to ignore .env files in the root directory
+.env.* # Ignore all .env files with any suffix
+
+# Ignore secrets files
+secrets.json
+config/secrets/*
+
+# Ignore .env files
+.env
+.env.* 

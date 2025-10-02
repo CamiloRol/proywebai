@@ -4,18 +4,18 @@ import os
 from datetime import datetime, timedelta
 from db import supabase
 
-JWT_SECRET = os.getenv("JWT_SECRET")
+JWT_SECRET = os.getenv("JWT_KEY")
 
-def authenticate_user(email: str, password: str):
+def authenticate_user(email: str, password_hash: str):
     response = supabase.table("users").select("*").eq("email", email).execute()
     
     if not response.data:
         return None
     
     user = response.data[0]
-    hashed_password = user["password"]  # guardado con bcrypt
+    hashed_password = user["password_hash"]
     
-    if bcrypt.checkpw(password.encode("utf-8"), hashed_password.encode("utf-8")):
+    if bcrypt.checkpw(password_hash.encode("utf-8"), hashed_password.encode("utf-8")):
         return user
     return None
 

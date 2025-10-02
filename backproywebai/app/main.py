@@ -1,21 +1,22 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import auth
+from routers import auth
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:5173", 
+    "http://127.0.0.1:5173" 
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins, 
+    allow_credentials=True,
+    allow_methods=["*"], 
+    allow_headers=["*"], 
+)
 
 # Incluir routers
 app.include_router(auth.router)
 
-@app.get("/")
-def root():
-    return {"message": "Backend FastAPI funcionando 🚀"}
-
-def add_cors(app: FastAPI):
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["http://localhost:5173"],  # Vite por defecto
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
