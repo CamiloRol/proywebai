@@ -1,3 +1,5 @@
+import { Plus } from "react-feather";
+
 export default function asidechat() {
   return (
     <>
@@ -5,7 +7,7 @@ export default function asidechat() {
             <div className="mb-6">
                 <h2 className="text-lg font-semibold text-gray-800 mb-3">Nuevo Chat</h2>
                 <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg flex items-center justify-center transition">
-                    <i data-feather="plus" className="mr-2 w-4 h-4"></i> Crear chat
+                    <Plus /> Crear chat
                 </button>
             </div>
             

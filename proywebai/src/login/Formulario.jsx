@@ -1,4 +1,25 @@
+import { useState } from "react";
+import { login } from "../api/auth";
+import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff, Lock, Mail } from "react-feather";
+
 export default function Formulario() {
+    const [email, setEmail] = useState("");
+    const [password_hash, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+        const data = await login(email, password_hash);
+        setMessage("✅ Login correcto.");
+        localStorage.setItem("token", data.access_token);
+        navigate("/home");
+        } catch (err) {
+        setMessage("❌ " + err.message);
+        }
+    };
   return (
     <>
         <div className="max-w-md w-full mx-auto px-4">
@@ -9,14 +30,14 @@ export default function Formulario() {
                 </div>
                 
                 <div className="px-8 py-8">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-6">
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Correo electrónico</label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i data-feather="mail" className="text-gray-400"></i>
+                                    <Mail className="text-gray-400" />
                                 </div>
-                                <input type="email" id="email" className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 input-focus focus:outline-none transition duration-200" placeholder="tu@email.com" required/>
+                                <input type="email" id="email" value={email} className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 input-focus focus:outline-none transition duration-200" placeholder="tu@email.com" onChange={(e) => setEmail(e.target.value)} required/>
                             </div>
                         </div>
                         
@@ -24,13 +45,13 @@ export default function Formulario() {
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i data-feather="lock" className="text-gray-400"></i>
+                                    <Lock className="text-gray-400" />
                                 </div>
-                                <input type="password" id="password" className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 input-focus focus:outline-none transition duration-200" placeholder="••••••••" required/>
+                                <input type="password" id="password" value={password_hash} className="pl-10 w-full px-4 py-3 rounded-lg border border-gray-300 input-focus focus:outline-none transition duration-200" placeholder="••••••••" onChange={(e) => setPassword(e.target.value)} required/>
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
                                     <button type="button" className="text-gray-400 hover:text-gray-600 focus:outline-none">
-                                        <i data-feather="eye" className="hidden"></i>
-                                        <i data-feather="eye-off"></i>
+                                        <Eye />
+                                        <EyeOff />
                                     </button>
                                 </div>
                             </div>
@@ -48,7 +69,7 @@ export default function Formulario() {
                             Iniciar sesión
                         </button>
                     </form>
-                    
+                    <p>{message}</p>
                     <div className="mt-6">
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
@@ -69,7 +90,7 @@ export default function Formulario() {
             </div>
             
             <div className="mt-8 text-center text-sm text-gray-500">
-                <p>© 2023 Plataforma. Todos los derechos reservados.</p>
+                <p>© 2025 Plataforma. Todos los derechos reservados.</p>
             </div>
         </div>
     </>

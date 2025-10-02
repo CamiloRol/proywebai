@@ -7,10 +7,6 @@
         background-color: #f8fafc;
 }
         
-.gradient-bg-login {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-}
-        
 .input-focus:focus {
         box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         border-color: #6366f1;

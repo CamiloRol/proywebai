@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Navbar() {
+    const { isAuthenticated, logout } = useAuth();
   return (
     <>
         <div className="gradient-bg text-white shadow-lg">
@@ -10,11 +12,26 @@ export default function Navbar() {
                         <i data-feather="zap" className="w-8 h-8"></i>
                         <h1 className="text-2xl font-bold">InfoFlow AI</h1>
                     </div>
-                    <nav className="hidden md:flex space-x-6">
+                    <div className="hidden md:flex space-x-6">
                         <Link to="/" className="hover:text-indigo-200 transition">Inicio</Link>
-                        <Link to="/graficas" className="hover:text-indigo-200 transition">Graficas</Link>
-                        <Link to="/login" className="hover:text-indigo-200 transition">Iniciar sesión</Link>
-                    </nav>
+                        {!isAuthenticated ? (
+                            <Link to="/login" className="hover:text-blue-400">Iniciar Sesión</Link>
+                            ) : (
+                            <>
+                                <Link to="/graficas" className="hover:text-blue-400">Gráficas</Link>
+                                <Link to="/perfil" className="hover:text-blue-400">Perfil</Link>
+                            </>
+                        )}
+                        {isAuthenticated && (
+                            <button 
+                            onClick={logout} 
+                            className="bg-red-500 px-3 py-1 rounded"
+                            >
+                            Cerrar sesión
+                            </button>
+                        )}
+                    </div>
+
                     <button className="md:hidden">
                         <i data-feather="menu" className="w-6 h-6"></i>
                     </button>
