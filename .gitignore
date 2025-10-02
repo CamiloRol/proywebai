@@ -23,4 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-.env
+.env # Environment variables file  # Add this line to ignore .env files in the root directory
+.env.* # Ignore all .env files with any suffix
