@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import Graphics from './pages/Graphics'
 import Profile from './pages/Profile'
 import Notfound from './pages/Notfound'
+import ProtectedRoute from './components/Protectedroutes.jsx'
 
 function App() {
 
@@ -14,8 +15,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path='/graphics' element={<Graphics />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path='/graphics' element={<Graphics />} />
+          <Route path='/profile' element={<Profile />} />
+        </Route>
         <Route path="/*" element={<Notfound />} />
       </Routes>
     </>

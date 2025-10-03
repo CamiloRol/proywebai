@@ -19,8 +19,8 @@ export default function Navbar() {
                             <Link to="/login" className="hover:text-blue-400">Iniciar Sesión</Link>
                             ) : (
                             <>
-                                <Link to="/graficas" className="hover:text-blue-400">Gráficas</Link>
-                                <Link to="/perfil" className="hover:text-blue-400">Perfil</Link>
+                                <Link to="/graphics" className="hover:text-blue-400">Gráficas</Link>
+                                <Link to="/profile" className="hover:text-blue-400">Perfil</Link>
                             </>
                         )}
                         {isAuthenticated && (

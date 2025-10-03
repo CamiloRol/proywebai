@@ -1,6 +1,43 @@
 import { Send } from "react-feather";
+import { useState } from "react";
+import axios from "axios";
 
 export default function Chatarea() {
+    const [question, setQuestion] = useState("");
+    const [model, setModel] = useState("gpt-3.5-turbo");
+    const [messages, setMessages] = useState([]); 
+    const [loading, setLoading] = useState(false)
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!question.trim()) return;
+
+        const newMessage = { role: "user", content: question };
+        setMessages((prev) => [...prev, newMessage]);
+        
+        setQuestion("");
+        setLoading(true);
+        try {
+        const resp = await axios.post("http://localhost:8000/ask/", {
+            question: newMessage.content,
+            model,
+        });
+
+        const botMessage = {
+            role: "assistant",
+            content: resp.data.answer,
+        };
+        setMessages((prev) => [...prev, botMessage]);
+        } catch (err) {
+            const errorMessage = {
+            role: "assistant",
+            content: "❌ Error al obtener respuesta",
+        };
+        setMessages((prev) => [...prev, errorMessage]);
+        } finally {
+            setLoading(false);
+        }
+    };
   return (
     <>
         <div className="flex-grow bg-white rounded-lg shadow-md p-6 flex flex-col">
@@ -10,45 +47,48 @@ export default function Chatarea() {
             </div>
         
             <div className="flex-grow overflow-y-auto mb-6 space-y-4" id="chat-container">
-                <div className="chat-bubble ai-bubble p-4">
-                    <p>¡Hola! Soy InfoFlow AI, tu asistente digital. ¿En qué puedo ayudarte hoy?</p>
-                </div>
                 
-                <div className="chat-bubble user-bubble p-4">
-                    <p>¿Cuáles son las últimas tendencias en marketing digital para 2023?</p>
-                </div>
-                
-                <div className="chat-bubble ai-bubble p-4">
-                    <p>En 2023, las principales tendencias incluyen:</p>
-                    <ul className="list-disc pl-5 mt-2 space-y-1">
-                        <li>Marketing conversacional con IA</li>
-                        <li>Contenido generado por usuarios</li>
-                        <li>Videos cortos y TikTok marketing</li>
-                        <li>Personalización hiper-segmentada</li>
-                        <li>Sostenibilidad y marketing verde</li>
-                    </ul>
-                    <p className="mt-2">¿Te gustaría que profundice en alguna de estas áreas?</p>
-                </div>
-                
-                <div className="chat-bubble ai-bubble p-4 w-24">
-                    <div className="typing-indicator flex">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                <div className="flex-1 overflow-y-auto border rounded p-2 space-y-2 bg-gray-50">
+                    {messages.map((msg, i) => (
+                    <div
+                        key={i}
+                        className={`p-2 rounded max-w-[75%] ${
+                        msg.role === "user"
+                            ? "bg-blue-500 text-white self-end"
+                            : "bg-gray-200 text-black self-start"
+                        }`}
+                    >
+                        {msg.content}
                     </div>
+                    ))}
+                    {loading && <p className="text-gray-400">Escribiendo...</p>}
                 </div>
+                
+                
             </div>
             
             <div className="border-t pt-4">
-                <form className="flex space-x-2">
+                <form className="flex space-x-2" onSubmit={handleSubmit}>
                     <input 
                         type="text" 
                         placeholder="Escribe tu pregunta aquí..." 
-                        className="flex-grow border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        value={question} 
+                        onChange={(e) => setQuestion(e.target.value)}
+                        className="flex-grow border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                     />
+                    <select
+                    value={model}
+                    onChange={(e) => setModel(e.target.value)}
+                    className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                    >
+                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                        <option value="gpt-4">GPT-4</option>
+                        <option value="gpt-4o-mini">GPT-4o Mini</option>
+                    </select>
                     <button 
                         type="submit" 
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center justify-center transition"
+                        disabled={loading}
+                        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center justify-center transition"
                     >
                         <Send />
                     </button>

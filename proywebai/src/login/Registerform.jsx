@@ -70,18 +70,18 @@ export default function Registerform() {
                 
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Correo Electronico *</label>
-                    <input type="email" id="email" name="email" value={userData.email} onChange={handleChange} className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required/>
+                    <input type="email" id="email" name="email" value={userData.email} onChange={handleChange} className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-green-500" required/>
                 </div>
 
                 <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Telefono</label>
-                    <input type="text" id="phone" name="phone" value={userData.phone} onChange={handleChange} className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+                    <input type="text" id="phone" name="phone" value={userData.phone} onChange={handleChange} className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-green-500"/>
                 </div>
                 
                 <div>
                     <label htmlFor="password_hash" className="block text-sm font-medium text-gray-700 mb-1">Contraseña *</label>
                     <div className="relative">
-                        <input type="password" id="password_hash" name="password_hash" value={userData.password_hash} onChange={handleChange} className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required/>
+                        <input type="password" id="password_hash" name="password_hash" value={userData.password_hash} onChange={handleChange} className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-green-500" required/>
                         <button type="button" className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
                             <Eye />
                         </button>
@@ -91,7 +91,7 @@ export default function Registerform() {
                 <div>
                     <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">Confirmar Contraseña *</label>
                     <div className="relative">
-                        <input type="password" id="confirmPassword" name="confirmPassword" className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                        <input type="password" id="confirmPassword" name="confirmPassword" className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-green-500" />
                         <button type="button" className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
                             <Eye />
                         </button>
@@ -100,24 +100,24 @@ export default function Registerform() {
 
                 <div>
                     <label htmlFor="avatar_url" className="block text-sm font-medium text-gray-700 mb-1">Avatar (URL)</label>
-                    <input type="url" id="avatar_url" name="avatar_url" value={userData.avatar_url} onChange={handleChange} className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+                    <input type="url" id="avatar_url" name="avatar_url" value={userData.avatar_url} onChange={handleChange} className="input-field w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-green-500"/>
                 </div>
             </div>
             
             <div className="flex items-center">
-                <input type="checkbox" id="terms" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
+                <input type="checkbox" id="terms" className="h-4 w-4 text-green-600 focus:ring-offset-green-500 border-gray-300 rounded"/>
                 <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
-                    Estoy de acuerdo con los <a href="#" className="text-indigo-600 hover:text-indigo-500">Terminos</a> y <a href="#" className="text-indigo-600 hover:text-indigo-500">Politicas de privacidad</a>
+                    Estoy de acuerdo con los <a href="#" className="text-green-600 focus:ring-offset-green-500">Terminos</a> y <a href="#" className="text-green-600 hover:text-green-500">Politicas de privacidad</a>
                 </label>
             </div>
             
-            <button type="submit" className="w-full bg-indigo-600 text-white py-2.5 px-4 rounded-lg font-medium hover:bg-indigo-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            <button type="submit" className="w-full bg-green-600 text-white py-2.5 px-4 rounded-lg font-medium hover:bg-green-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-green-500 focus:ring-offset-2">
                 Crear Cuenta
             </button>
             
             <div className="text-center text-sm text-gray-500">
                 Ya tienes una cuenta?
-                <Link to="/login" className="text-indigo-600 hover:text-indigo-500 font-medium"> Iniciar Sesion</Link>
+                <Link to="/login" className="text-green-600 hover:text-green-500 font-medium"> Iniciar Sesion</Link>
             </div>
         </form>
         <p>{message}</p>
