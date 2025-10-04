@@ -48,14 +48,14 @@ export default function Chatarea() {
         
             <div className="flex-grow overflow-y-auto mb-6 space-y-4" id="chat-container">
                 
-                <div className="flex-1 overflow-y-auto border rounded p-2 space-y-2 bg-gray-50">
+                <div className="flex-1 overflow-y-auto rounded p-2 space-y-2 bg-gray-50">
                     {messages.map((msg, i) => (
                     <div
                         key={i}
                         className={`p-2 rounded max-w-[75%] ${
                         msg.role === "user"
                             ? "bg-blue-500 text-white self-end"
-                            : "bg-gray-200 text-black self-start"
+                            : "chat-bubble ai-bubble p-4"
                         }`}
                     >
                         {msg.content}
