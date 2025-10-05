@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../components/Authcontext.jsx";
 import { Eye, EyeOff, Lock, Mail } from "react-feather";
+import { Link } from "react-router-dom";
 
 export default function Formulario() {
     const { login } = useAuth();
@@ -83,9 +84,12 @@ export default function Formulario() {
                         </div>
                         
                         <div className="mt-6">
-                            <a href="#" className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200">
-                                <span>Regístrate ahora</span>
-                            </a>
+                            <Link to="/register" className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200">
+                                <svg className="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v6h6a1 1 0 110 2h-6v6a1 1 0 11-2 0v-6H3a1 1 0 110-2h6V3a1 1 0 011-1z" clipRule="evenodd" />
+                                </svg>
+                                <span className="ml-2">Regístrate ahora</span>
+                            </Link>
                         </div>
                     </div>
                 </div>

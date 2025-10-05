@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from schemas.ask import AskRequest
-from routers.faq import check_faq
-from db import supabase
+from app.schemas.ask import AskRequest
+from app.routers.faq import check_faq
+from app.db import supabase
 from openai import OpenAI
 import os
 

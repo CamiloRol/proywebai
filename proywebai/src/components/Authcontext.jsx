@@ -10,6 +10,13 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
 
+   useEffect(() => {
+    // Este log SÓLO se mostrará si el estado 'user' realmente cambia.
+    console.log("--- useEffect en AuthContext ---");
+    console.log("EL ESTADO 'user' HA CAMBIADO. Nuevo valor:", user);
+    console.log("---------------------------------");
+  }, [user]); 
+  
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);

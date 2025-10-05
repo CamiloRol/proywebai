@@ -1,4 +1,5 @@
-import { Award, CheckCircle, Clock, CreditCard, Link, PlayCircle, Shield, UserPlus } from "react-feather";
+import { Award, CheckCircle, Clock, CreditCard, PlayCircle, Shield, UserPlus } from "react-feather";
+import { Link } from "react-router-dom";
 
 export default function Homenologin() {
   return (
@@ -9,10 +10,10 @@ export default function Homenologin() {
                     <h2 className="text-3xl sm:text-4xl font-bold mb-4">¡Únete ahora!</h2>
                     <p className="text-lg mb-6 opacity-90">Descubre todas las ventajas de ser parte de nuestra plataforma. Regístrate ahora y obtén acceso inmediato.</p>
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <a href="#" className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg hover-scale flex items-center justify-center">
+                        <Link to={"/register"} className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg hover-scale flex items-center justify-center">
                             <UserPlus /> Regístrate gratis
-                        </a>
-                        <a href="#" className="border border-white text-white hover:bg-white/10 font-medium py-3 px-6 rounded-lg hover-scale flex items-center justify-center">
+                        </Link>
+                        <a href="https://www.loom.com/share/bb4360e7cf224949a7ddf189ec52f865" className="border border-white text-white hover:bg-white/10 font-medium py-3 px-6 rounded-lg hover-scale flex items-center justify-center" target="_blank" rel="noopener noreferrer">
                             <PlayCircle /> Ver demo
                         </a>
                     </div>

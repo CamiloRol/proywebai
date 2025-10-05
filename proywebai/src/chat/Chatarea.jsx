@@ -54,7 +54,7 @@ export default function Chatarea() {
                         key={i}
                         className={`p-2 rounded max-w-[75%] ${
                         msg.role === "user"
-                            ? "bg-blue-500 text-white self-end"
+                            ? "bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded ml-auto"
                             : "chat-bubble ai-bubble p-4"
                         }`}
                     >

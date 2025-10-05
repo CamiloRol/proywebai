@@ -10,9 +10,6 @@ httpx
 python-multipart
 python-jose
 bcrypt
-pydantic
 pytest
-io
-dotenv
-jwt
-psycopg2
+PyJWT
+pydantic[email]

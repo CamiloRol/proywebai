@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from schemas.faq import FAQCreate
-from db import supabase
+from app.schemas.faq import FAQCreate
+from app.db import supabase
 
 router = APIRouter(prefix="/faq", tags=["FAQ"])
 

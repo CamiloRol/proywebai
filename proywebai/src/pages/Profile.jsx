@@ -1,5 +1,3 @@
-import Footer from "../footer/Footer";
-import Navbar from "../header/Navbar";
 import { useAuth } from "../components/Authcontext.jsx";
 import { useState, useEffect } from "react";
 import Adminprofile from "../components/Adminprofile";
@@ -24,7 +22,6 @@ export default function Profile() {
 
   return (
     <>
-      <Navbar />
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col items-center mb-12">
             <div className="relative mb-6">
@@ -54,7 +51,6 @@ export default function Profile() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   )
 }

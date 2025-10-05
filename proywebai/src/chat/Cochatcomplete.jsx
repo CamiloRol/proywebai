@@ -1,4 +1,4 @@
-import Asidechat from "./asidechat.jsx";
+import Asidechat from "./Asidechat.jsx";
 import Chatarea from "./Chatarea.jsx";
 
 export default function Cochatcomplete() {

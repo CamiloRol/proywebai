@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException
-from schemas.auth import LoginRequest, LoginResponse
-from core.security import authenticate_user, create_access_token, hash_password
-from schemas.auth import LoginRequest, LoginResponse, UserResponse
-from schemas.user import UserCreate
-from db import supabase
+from app.schemas.auth import LoginRequest, LoginResponse
+from app.core.security import authenticate_user, create_access_token, hash_password
+from app.schemas.auth import LoginRequest, LoginResponse, UserResponse
+from app.schemas.user import UserCreate
+from app.db import supabase
 import uuid
 
 router = APIRouter(prefix="/auth", tags=["auth"])

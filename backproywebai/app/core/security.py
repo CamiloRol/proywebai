@@ -2,8 +2,8 @@ import bcrypt
 import jwt
 import os
 from datetime import datetime, timedelta
-from db import supabase
-from fastapi import Depends, HTTPException, status
+from app.db import supabase
+from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError
 

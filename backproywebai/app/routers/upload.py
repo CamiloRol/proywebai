@@ -2,8 +2,8 @@ from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
 import pandas as pd
 from io import BytesIO
 from openai import OpenAI
-from core.security import get_current_user
-from db import supabase
+from app.core.security import get_current_user
+from app.db import supabase
 import os
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
