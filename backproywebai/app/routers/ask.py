@@ -44,7 +44,6 @@ def classify_topic(question: str) -> str:
 def get_rag_chunks(question: str, limit: int = 5, file_filter: str = None):
     """Traer chunks desde la tabla chunks"""
     try:
-        # Generar embedding de la pregunta
         embedding = client.embeddings.create(
             model="text-embedding-3-small",
             input=question
@@ -55,11 +54,9 @@ def get_rag_chunks(question: str, limit: int = 5, file_filter: str = None):
             "match_count": limit
         }
 
-        # Si se pasa un archivo como filtro, se agrega directo (texto)
         if file_filter:
             params["file_filter"] = file_filter
 
-        # Llamar a la función SQL match_chunks en Supabase
         resp = supabase.rpc(
             "match_chunks",
             params
@@ -69,7 +66,6 @@ def get_rag_chunks(question: str, limit: int = 5, file_filter: str = None):
             print("⚠️ No se encontraron chunks relacionados")
             return []
 
-        # Log para debug
         print(f"✅ Chunks recuperados con filtro {file_filter}:", resp.data[:2])
 
         return [c["content"] for c in resp.data]
@@ -82,12 +78,10 @@ def get_rag_chunks(question: str, limit: int = 5, file_filter: str = None):
 def ask(request: AskRequest):
     question = request.question.strip()
 
-    # Revisar FAQ
     faq_answer = check_faq(question)
     if faq_answer:
         return {"answer": faq_answer, "source": "faq"}
 
-    # Aquí decides el filtro (por ahora puedes hardcodear para probar)
     rag_chunks = get_rag_chunks(question, file_filter="disney_plus_shows.csv")
 
     if not rag_chunks:
@@ -119,7 +113,6 @@ def ask(request: AskRequest):
 
         answer = response.choices[0].message.content.strip()
 
-        # Guardar en FAQ
         save_faq(question, answer)
 
         return {"answer": answer, "source": "rag"}

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../api/auth";
+import { useAuth } from "../components/Authcontext.jsx";
 import { Eye, EyeOff, Lock, Mail } from "react-feather";
 
 export default function Formulario() {
+    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password_hash, setPassword] = useState("");
     const [message, setMessage] = useState("");
@@ -11,14 +12,14 @@ export default function Formulario() {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-        const data = await login(email, password_hash);
-        setMessage("✅ Login correcto.");
-        localStorage.setItem("token", data.access_token);
-        navigate("/");
-        } catch (err) {
-        setMessage("❌ " + err.message);
+         e.preventDefault();
+        const result = await login(email, password_hash);
+        if (!result.success) {
+        setMessage(result.message);
+        } else {
+        setMessage("");
+        console.log("Usuario logueado!");
+        navigate("/")
         }
     };
   return (

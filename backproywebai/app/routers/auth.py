@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from schemas.auth import LoginRequest, LoginResponse
 from core.security import authenticate_user, create_access_token, hash_password
-from schemas.auth import LoginRequest, LoginResponse
+from schemas.auth import LoginRequest, LoginResponse, UserResponse
 from schemas.user import UserCreate
 from db import supabase
 import uuid
@@ -16,7 +16,22 @@ def login(request: LoginRequest):
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
     
     token = create_access_token(user["id"])
-    return {"access_token": token, "token_type": "bearer"}
+
+    profile_response = supabase.table("user_profiles").select("*").eq("user_id", user["id"]).execute()
+    profile = profile_response.data[0] if profile_response.data else {}
+
+    # Mezclamos la info
+    user_data = UserResponse(
+        id=user["id"],
+        email=user["email"],
+        full_name=profile.get("full_name"),
+        avatar_url=profile.get("avatar_url"),
+        phone=profile.get("phone"),
+        role_id=user["role_id"]
+    )
+
+    print("LOGIN DATA:", user_data)
+    return {"access_token": token, "token_type": "bearer", "user": user_data}
 
 @router.post("/register")
 def register(user: UserCreate):

@@ -1,14 +1,16 @@
 import { createRoot } from 'react-dom/client'
 import './App.css'
 import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
-import ProtectedRoute from './components/Protectedroutes.jsx'
+import React from 'react'
 import { AuthProvider } from './components/Authcontext.jsx'
+import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
-    <BrowserRouter>
+    <React.StrictMode>
       <AuthProvider>
+        <BrowserRouter>
         <App />
+        </BrowserRouter>
       </AuthProvider>
-    </BrowserRouter>
+    </React.StrictMode>
 )

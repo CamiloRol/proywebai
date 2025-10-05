@@ -5,16 +5,14 @@ import Navbar from "../header/Navbar";
 import { useAuth } from "../hooks/useAuth";
 
 export default function Home() {
-  const { isAuthenticated} = useAuth();
+  const { isAuthenticated } = useAuth();
   return (
     <>
         <Navbar />
         {!isAuthenticated ? (
           <Homenologin/>
           ) : (
-          <>
           <Cochatcomplete />
-          </>
         )}
         <Footer />
     </>

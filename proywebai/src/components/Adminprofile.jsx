@@ -1,6 +1,10 @@
-import React from 'react'
+import { useAuth } from "./Authcontext.jsx";
 
 export default function Adminprofile() {
+    const { user} = useAuth();
+
+    if (!user) return <p>No logueado</p>;
+
   return (
     <div id="admin-content" class="role-content max-w-3xl mx-auto profile-card bg-white rounded-xl p-8">
             <div class="grid md:grid-cols-2 gap-8">
